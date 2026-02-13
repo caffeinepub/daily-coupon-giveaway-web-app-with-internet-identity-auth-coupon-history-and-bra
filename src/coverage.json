@@ -1,0 +1,79 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T05:39:42.839Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 3,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-11",
+        "summary": "Add Progressive Web App (PWA) support so the existing React web app can be installed on Android and desktop (home-screen install) without rebuilding as React Native.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/manifest.webmanifest",
+          "frontend/public/sw.js",
+          "frontend/public/offline.html",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/manifest.webmanifest",
+          "frontend/public/sw.js",
+          "frontend/public/offline.html",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Add required PWA icon assets to the frontend as static files and reference them from the web app manifest (do not serve icons via the backend).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+          "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+          "frontend/public/manifest.webmanifest"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+          "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+          "frontend/public/manifest.webmanifest"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Add a short in-repo README section explaining how to publicly share the deployed app URL and how to install it on Android as a PWA (Add to Home Screen), explicitly noting that Play Store upload requires a separate Android build outside this project.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/README.md"
+        ],
+        "matchedFiles": [
+          "frontend/README.md"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/README.md",
+    "frontend/index.html",
+    "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+    "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+    "frontend/public/manifest.webmanifest",
+    "frontend/public/offline.html",
+    "frontend/public/sw.js",
+    "frontend/src/App.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

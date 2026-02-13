@@ -1,2 +1,3 @@
-# daily-coupon-giveaway-web-app-with-internet-identity-auth-coupon-history-and-bra
-Exported from Caffeine project: Daily coupon giveaway web app with Internet Identity auth, coupon history, and brand listings
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

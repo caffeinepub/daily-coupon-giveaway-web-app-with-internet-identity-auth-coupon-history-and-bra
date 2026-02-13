@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Rebuild the existing daily coupon app as a true React Native + Firebase mobile app that can be packaged as an Android App Bundle (.aab) and prepared for Google Play Store release, preserving the current feature set (auth, daily coupon, history/redeem, brands, notifications, bottom-tab navigation).",
+  "architectural_notes": [
+    "Frontend: React Native (cross-platform mobile).",
+    "Backend: Firebase (Realtime DB/Firestore, Auth, Cloud Functions).",
+    "Navigation: bottom tab bar with sections Home, Coupons, Brands, Profile.",
+    "Data model should include user data, daily coupon codes, and brand information.",
+    "Backend endpoints/functions needed for auth, fetching daily coupons, and retrieving brand information.",
+    "Security: secure auth protocols and protect user data (encryption/secure handling).",
+    "Out of scope: advanced coupon usage analytics.",
+    "Out of scope: third-party shopping platform integrations for direct redemption.",
+    "Add Android release build pipeline: signing config + generation of Android App Bundle (.aab) suitable for Google Play Console distribution."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Flat app icon in a vibrant warm palette, simple coupon-ticket mark (pwa-icon-192.dim_192x192.png)\n- Flat app icon in a vibrant warm palette, simple coupon-ticket mark (pwa-icon-512.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-user-authentication-using-internet-identity-so-users-can-sign-in-out-and-the-app-can-identify-the-current-user-by-principal",
+      "title": "Implement user authentication using Internet Identity so users can sign in/out and the app can identify the current user by Principal.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-bottom-navigation-layout-with-four-sections-home-coupons-brands-profile-matching-the-requested-user-flow-and-allowing-navigation-between-these-sections-without-losing-auth-state",
+      "title": "Create a bottom navigation layout with four sections—Home, Coupons, Brands, Profile—matching the requested user flow and allowing navigation between these sections without losing auth state.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-home-dashboard-to-fetch-and-display-the-current-day-s-coupon-including-brand-details-and-a-clear-call-to-action-to-copy-the-coupon-code",
+      "title": "Implement the Home dashboard to fetch and display the current day’s coupon, including brand details and a clear call-to-action to copy the coupon code.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-coupon-history-past-coupons-so-users-can-browse-previously-available-coupons-and-view-each-coupon-s-status-redeemed-vs-not-redeemed",
+      "title": "Implement coupon history (Past Coupons) so users can browse previously available coupons and view each coupon’s status (redeemed vs not redeemed).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-coupon-redeem-functionality-that-lets-a-signed-in-user-mark-a-coupon-as-redeemed-and-prevents-double-redeeming-of-the-same-coupon-for-that-user",
+      "title": "Add coupon redeem functionality that lets a signed-in user mark a coupon as redeemed and prevents double-redeeming of the same coupon for that user.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-featured-brands-listing-ui-and-backend-support-so-users-can-browse-brands-offering-coupons-and-optionally-filter-search-by-brand-name",
+      "title": "Implement Featured Brands listing UI and backend support so users can browse brands offering coupons and optionally filter/search by brand name.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-in-app-notification-experience-to-inform-users-when-a-new-daily-coupon-is-available-without-relying-on-os-push-notifications",
+      "title": "Implement an in-app notification experience to inform users when a new daily coupon is available (without relying on OS push notifications).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-vibrant-visual-theme-with-clear-typography-and-a-mobile-first-layout-and-enforce-it-consistently-across-all-screens",
+      "title": "Apply a coherent, vibrant visual theme with clear typography and a mobile-first layout, and enforce it consistently across all screens.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-required-generated-images-as-static-assets-and-use-them-in-the-ui-landing-and-or-navigation-without-serving-them-via-the-backend",
+      "title": "Add the required generated images as static assets and use them in the UI (landing and/or navigation) without serving them via the backend.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-progressive-web-app-pwa-support-so-the-existing-react-web-app-can-be-installed-on-android-and-desktop-home-screen-install-without-rebuilding-as-react-native",
+      "title": "Add Progressive Web App (PWA) support so the existing React web app can be installed on Android and desktop (home-screen install) without rebuilding as React Native.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-required-pwa-icon-assets-to-the-frontend-as-static-files-and-reference-them-from-the-web-app-manifest-do-not-serve-icons-via-the-backend",
+      "title": "Add required PWA icon assets to the frontend as static files and reference them from the web app manifest (do not serve icons via the backend).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-short-in-repo-readme-section-explaining-how-to-publicly-share-the-deployed-app-url-and-how-to-install-it-on-android-as-a-pwa-add-to-home-screen-explicitly-noting-that-play-store-upload-requires-a-separate-android-build-outside-this-project",
+      "title": "Add a short in-repo README section explaining how to publicly share the deployed app URL and how to install it on Android as a PWA (Add to Home Screen), explicitly noting that Play Store upload requires a separate Android build outside this project.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "User authentication (email + social login) using Firebase Auth",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Daily coupon giveaway: fetch and display the current day’s coupon code",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Coupon management: view, copy, and redeem coupons; access past coupons",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Brand listings: show featured brands offering coupons",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Push notification system to alert users when a new daily coupon is available",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "App navigation & core screens: landing/login/signup, dashboard, past coupons, brands, profile with bottom tab bar",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add backend data models and query methods to support: featured brands, daily coupons (keyed by date), and per-user coupon redemption state.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Rebuild/prepare the app as a deployable React Native Android app (generate signed .aab) and set up steps for Google Play Store submission",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Daily coupon giveaway web app with Internet Identity auth, coupon history, and brand listings",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

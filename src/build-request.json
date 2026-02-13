@@ -1,0 +1,93 @@
+{
+  "kind": "build_request",
+  "title": "Make the web app publishable and installable (PWA) as an alternative to Play Store upload",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "text": "Add Progressive Web App (PWA) support so the existing React web app can be installed on Android and desktop (home-screen install) without rebuilding as React Native.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "User: \"Upload to Play store\"",
+          "User: \"Ok upload this app to google.com\"",
+          "User: \"Yes\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "The app serves a valid web app manifest (name, short_name, start_url, display=standalone, theme_color, background_color, icons).",
+        "The app registers a service worker that enables offline fallback for the shell (at minimum: app loads a friendly offline page when the network is unavailable).",
+        "On supported browsers, the app is installable (meets baseline PWA criteria; Lighthouse PWA checks pass for manifest + service worker)."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Add required PWA icon assets to the frontend as static files and reference them from the web app manifest (do not serve icons via the backend).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "User: \"Yes\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "PWA icons are present under frontend/public/assets/generated (or equivalent static public path) and referenced by the manifest with correct sizes.",
+        "At least 192x192 and 512x512 PNG icons are provided and display correctly when the app is installed."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Add a short in-repo README section explaining how to publicly share the deployed app URL and how to install it on Android as a PWA (Add to Home Screen), explicitly noting that Play Store upload requires a separate Android build outside this project.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "User: \"Upload to Play store\"",
+          "Assistant: \"Caffeine builds web apps, not mobile apps\"",
+          "User: \"Yes\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "Documentation is included in the repository describing: (1) where to find the production URL, (2) Android Chrome 'Install app' / 'Add to Home screen' steps, and (3) a clear note that generating an .aab for Google Play is out of scope for this web build."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not introduce unsupported stacks (no React Native, Firebase, native Android build pipelines, or generating .aab files within this project).",
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything under frontend/src/components/ui (compose instead).",
+    "Keep all backend logic within the existing single Motoko actor (backend/main.mo); do not add additional backend services."
+  ],
+  "nonGoals": [
+    "Uploading the app to google.com (not a valid app hosting target).",
+    "Publishing to the Google Play Store or generating a signed Android App Bundle (.aab) from this codebase.",
+    "Adding third-party authentication providers beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Flat app icon in a vibrant warm palette, simple coupon-ticket mark (pwa-icon-192.dim_192x192.png)",
+      "Flat app icon in a vibrant warm palette, simple coupon-ticket mark (pwa-icon-512.dim_512x512.png)"
+    ],
+    "edits": [
+      ""
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Use English for any user-facing text in build requests."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

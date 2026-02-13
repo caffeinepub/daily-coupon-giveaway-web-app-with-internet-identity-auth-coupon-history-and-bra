@@ -1,0 +1,63 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-progressive-web-app-pwa-support-so-the-existing-react-web-app-can-be-installed-on-android-and-desktop-home-screen-install-without-rebuilding-as-react-native",
+      "featureTitle": "Add Progressive Web App (PWA) support so the existing React web app can be installed on Android and desktop (home-screen install) without rebuilding as React Native.",
+      "files": [
+        "frontend/index.html",
+        "frontend/public/manifest.webmanifest",
+        "frontend/public/offline.html",
+        "frontend/public/sw.js",
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-required-pwa-icon-assets-to-the-frontend-as-static-files-and-reference-them-from-the-web-app-manifest-do-not-serve-icons-via-the-backend",
+      "featureTitle": "Add required PWA icon assets to the frontend as static files and reference them from the web app manifest (do not serve icons via the backend).",
+      "files": [
+        "frontend/public/manifest.webmanifest"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-short-in-repo-readme-section-explaining-how-to-publicly-share-the-deployed-app-url-and-how-to-install-it-on-android-as-a-pwa-add-to-home-screen-explicitly-noting-that-play-store-upload-requires-a-separate-android-build-outside-this-project",
+      "featureTitle": "Add a short in-repo README section explaining how to publicly share the deployed app URL and how to install it on Android as a PWA (Add to Home Screen), explicitly noting that Play Store upload requires a separate Android build outside this project.",
+      "files": [
+        "frontend/README.md"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

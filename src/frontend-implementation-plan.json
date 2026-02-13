@@ -1,0 +1,82 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add installable Progressive Web App (PWA) support to the existing React app",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "summary": "Enable baseline PWA behavior (manifest + service worker) including an offline fallback page so the app is installable on Android and desktop.",
+      "acceptanceCriteria": [
+        "The app serves a valid web app manifest (name, short_name, start_url, display=standalone, theme_color, background_color, icons).",
+        "The app registers a service worker that enables offline fallback for the shell (at minimum: app loads a friendly offline page when the network is unavailable).",
+        "On supported browsers, the app is installable (meets baseline PWA criteria; Lighthouse PWA checks pass for manifest + service worker)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/manifest.webmanifest",
+          "operation": "create",
+          "description": "Create a web app manifest defining name/short_name, start_url, display=standalone, theme_color, background_color, and icon references pointing to the static generated PWA icons under frontend/public/assets/generated."
+        },
+        {
+          "path": "frontend/public/sw.js",
+          "operation": "create",
+          "description": "Add a service worker that precaches the app shell essentials (including the offline fallback page and manifest) and serves a friendly offline fallback when navigation fails due to no network."
+        },
+        {
+          "path": "frontend/public/offline.html",
+          "operation": "create",
+          "description": "Add a simple, friendly offline fallback page (English text) that the service worker can return when the network is unavailable."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Wire PWA metadata into the HTML shell: add a link to the manifest and include theme-color/background-related meta tags needed for installability."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register the service worker from within the React app (without modifying frontend/src/main.tsx) so supported browsers install/activate it and offline fallback works."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add required PWA icon assets as static frontend files and reference them from the manifest (no backend serving).",
+      "acceptanceCriteria": [
+        "PWA icons are present under frontend/public/assets/generated (or equivalent static public path) and referenced by the manifest with correct sizes.",
+        "At least 192x192 and 512x512 PNG icons are provided and display correctly when the app is installed."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+          "operation": "create",
+          "description": "Add the generated 192x192 PNG PWA icon as a static asset at frontend/public/assets/generated/pwa-icon-192.dim_192x192.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated 512x512 PNG PWA icon as a static asset at frontend/public/assets/generated/pwa-icon-512.dim_512x512.png."
+        },
+        {
+          "path": "frontend/public/manifest.webmanifest",
+          "operation": "modify",
+          "description": "Ensure the manifest icon list references frontend/public/assets/generated/pwa-icon-192.dim_192x192.png (192x192) and frontend/public/assets/generated/pwa-icon-512.dim_512x512.png (512x512) with correct sizes and types."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Document how to share the deployed URL and install the app as a PWA on Android; clarify Play Store upload is out of scope for this web project.",
+      "acceptanceCriteria": [
+        "Documentation is included in the repository describing: (1) where to find the production URL, (2) Android Chrome 'Install app' / 'Add to Home screen' steps, and (3) a clear note that generating an .aab for Google Play is out of scope for this web build."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/README.md",
+          "operation": "create",
+          "description": "Add a short README section explaining: how to find/share the production URL after deployment, how to install on Android via Chrome 'Install app'/'Add to Home screen', and a clear note that Google Play .aab generation/upload requires a separate Android build outside this repo."
+        }
+      ]
+    }
+  ]
+}
